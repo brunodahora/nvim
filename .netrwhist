@@ -1,11 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/brunodahora/git'
-let g:netrw_dirhist_2='/Users/brunodahora/git/pipefy'
-let g:netrw_dirhist_3='/Users/brunodahora/git'
-let g:netrw_dirhist_4='/Users/brunodahora/git/pipefy'
-let g:netrw_dirhist_5='/Users/brunodahora/git/pipefy/app'
-let g:netrw_dirhist_6='/Users/brunodahora/git/pipefy/app/models'
-let g:netrw_dirhist_7='/Users/brunodahora/.config/nvim'
-let g:netrw_dirhist_8='/Users/brunodahora/git/pipestyle'
-let g:netrw_dirhist_9='/Users/brunodahora/.config/nvim'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/brunodahora/git/pipefy/pipefy'
+let g:netrw_dirhist_2='/home/brunodahora/.nvim'
+let g:netrw_dirhist_3='/home/brunodahora/git/pipefy/pipefy'

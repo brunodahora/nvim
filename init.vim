@@ -1,4 +1,6 @@
 call plug#begin()
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'morhetz/gruvbox'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
@@ -48,7 +50,7 @@ nnoremap <leader>; A;<esc>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
-nnoremap <c-\> :Vexplore<cr>
+nnoremap <c-\> :NERDTreeToggle<cr>
 nnoremap <c-s-Left> :vertical resize -1<cr>
 nnoremap <c-s-Right> :vertical resize +1<cr>
 nnoremap <c-s-Up> :resize -1<cr>
@@ -84,7 +86,7 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 augroup ProjectDrawer
   autocmd!
-  autocmd VimEnter * :Vexplore
+  autocmd VimEnter * NERDTree
 augroup END
 
 " Deoplete
