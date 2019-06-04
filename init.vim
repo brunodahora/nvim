@@ -22,9 +22,14 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-"Plug 'steelsojka/deoplete-flow'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'steelsojka/deoplete-flow'
+Plug 'slashmili/alchemist.vim'
+Plug 'wokalski/autocomplete-flow'
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'dyng/ctrlsf.vim'
 call plug#end()
 
@@ -104,10 +109,13 @@ augroup ProjectDrawer
 augroup END
 
 " Deoplete
-"let g:deoplete#enable_at_startup = 1
-"let g:deoplete#sources#flow#flow_bin = 'flow' 
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#flow#flow_bin = 'flow' 
 
-"let g:syntastic_javascript_checkers = ['eslint', 'flow']
+" neosnippet
+let g:neosnippet#enable_completed_snippet = 1
+
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Prettier
 let g:prettier#autoformat = 0
@@ -122,3 +130,23 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gql
 "set completeopt-=preview
 "let g:ycm_add_preview_to_completeopt = 0
 
+" neosnippet
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
