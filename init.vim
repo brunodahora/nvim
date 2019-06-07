@@ -62,7 +62,8 @@ nnoremap <C-S-Left> :vertical resize -1<cr>
 nnoremap <C-S-Right> :vertical resize +1<cr>
 nnoremap <C-S-Up> :resize -1<cr>
 nnoremap <C-S-Down> :resize +1<cr>
-
+nnoremap <C-PageUp> :tabprevious<CR>                                                                            
+nnoremap <C-PageDown> :tabnext<CR>
 map <leader>r :NERDTreeFind<cr>
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
@@ -97,16 +98,19 @@ let g:airline_theme='one'
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
+" lexima
+let g:lexima_enable_newline_rules = 0
+
 "NERDTree-like config
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * NERDTree
-augroup END
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * NERDTree
+"augroup END
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -150,3 +154,23 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+augroup numbertoggle
+ autocmd!
+ autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+ autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+if exists('&inccommand')
+ set inccommand=split
+endif
+
+if !exists(":Source")
+  command Source source ~/.nvim/.init.vim
+endif
+if !exists(":SourceAndInstall")
+  command SourceAndInstall source ~/.nvim/init.vim <bar> :PlugInstall
+endif
+
+map <Leader>soi :SourceAndInstall<CR>
+map <Leader>sor :Source<CR>
