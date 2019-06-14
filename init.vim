@@ -18,19 +18,30 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'steelsojka/deoplete-flow'
+"Plug 'steelsojka/deoplete-flow'
 Plug 'slashmili/alchemist.vim'
-Plug 'wokalski/autocomplete-flow'
+"Plug 'wokalski/autocomplete-flow'
 " For func argument completion
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'dyng/ctrlsf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'flowtype/vim-flow', {
+            \ 'autoload': {
+            \     'filetypes': 'javascript'
+            \ },
+            \ 'build': {
+            \     'mac': 'npm install -g flow-bin',
+            \     'unix': 'npm install -g flow-bin'
+            \ }}
 call plug#end()
 
 colorscheme one 
@@ -93,7 +104,11 @@ let g:ale_fix_on_save = 1
 
 autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
 
-let g:airline_theme='one'
+let g:flow#autoclose = 1
+
+" Airline (statusline)
+let g:airline_theme='onedark'
+"let g:airline_section_b='%{FugitiveStatusline()}'
 
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -114,7 +129,7 @@ let g:netrw_winsize = 25
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#flow#flow_bin = 'flow' 
+"let g:deoplete#sources#flow#flow_bin = 'flow' 
 
 " neosnippet
 let g:neosnippet#enable_completed_snippet = 1
