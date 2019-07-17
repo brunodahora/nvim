@@ -42,6 +42,7 @@ Plug 'flowtype/vim-flow', {
             \     'mac': 'npm install -g flow-bin',
             \     'unix': 'npm install -g flow-bin'
             \ }}
+Plug 'ngmy/vim-rubocop'
 call plug#end()
 
 colorscheme one 
@@ -53,6 +54,8 @@ set number
 "set relativenumber
 set termguicolors
 
+set autoread
+
 set mouse=a
 
 set inccommand=split
@@ -61,12 +64,15 @@ set clipboard=unnamed
 set expandtab
 set shiftwidth=2
 
+set splitright
+set diffopt+=vertical
+
 let mapleader="\<space>"
 
 nnoremap <leader>; A;<esc>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <C-p> :Files<cr>
-nnoremap <C-f> :Ag<space>
+nnoremap <C-s> :Ag<space>
 nnoremap <C-q> :q<cr>
 nnoremap <C-\> :NERDTreeToggle<cr>
 nnoremap <C-S-Left> :vertical resize -1<cr>
@@ -79,6 +85,18 @@ map <leader>r :NERDTreeFind<cr>
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
 
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 
@@ -89,9 +107,7 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-let g:ale_fixers = {
- \ 'javascript': ['eslint']
- \ }
+let g:ale_fixers = {'javascript': ['prettier'], 'ruby': ['rubocop'] }
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 let b:ale_linters_ignore = ['tsserver']
 
@@ -134,6 +150,12 @@ let g:deoplete#enable_at_startup = 1
 " neosnippet
 let g:neosnippet#enable_completed_snippet = 1
 
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
 let g:syntastic_javascript_checkers = ['eslint']
 
 " Prettier
@@ -167,7 +189,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=2 concealcursor=nv
 endif
 
 augroup numbertoggle
