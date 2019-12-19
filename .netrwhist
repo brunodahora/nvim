@@ -1,9 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/bruno.hora/git/pipestyle/src/assets'
-let g:netrw_dirhist_2='/Users/bruno.hora/git/pipestyle/src/assets/stylesheets/docs'
-let g:netrw_dirhist_3='/Users/bruno.hora/git/pipestyle/src/assets/stylesheets/components'
-let g:netrw_dirhist_4='/Users/bruno.hora/git/pipestyle/src/assets'
-let g:netrw_dirhist_5='/Users/bruno.hora/git/pipestyle/src/assets/stylesheets/pipestyle'
-let g:netrw_dirhist_6='/Users/bruno.hora/git/pipestyle/src/assets/stylesheets/pipestyle/base'
-let g:netrw_dirhist_7='/Users/bruno.hora/git/pipeui/src/OrgDashboard'
+let g:netrw_dirhist_cnt =0

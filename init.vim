@@ -9,8 +9,9 @@ Plug 'junegunn/fzf.vim'
 "Plug 'roxma/nvim-completion-manager'
 Plug 'w0rp/ale'
 Plug 'cohama/lexima.vim'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'mlaursen/vim-react-snippets'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'mattn/emmet-vim'
@@ -43,6 +44,10 @@ Plug 'flowtype/vim-flow', {
             \     'unix': 'npm install -g flow-bin'
             \ }}
 Plug 'ngmy/vim-rubocop'
+Plug 'rainerborene/vim-reek'
+Plug 'shime/vim-livedown'
+Plug 'roman/golden-ratio'
+Plug 'eugen0329/vim-esearch'
 call plug#end()
 
 colorscheme one 
@@ -56,7 +61,7 @@ set termguicolors
 
 set autoread
 
-set mouse=a
+set mouse=n
 
 set inccommand=split
 set clipboard=unnamed
@@ -97,9 +102,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
-
 let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
@@ -107,7 +109,7 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-let g:ale_fixers = {'javascript': ['prettier'], 'ruby': ['rubocop'] }
+let g:ale_fixers = {'javascript': ['prettier'], 'ruby': ['rubocop', 'reek'] }
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 let b:ale_linters_ignore = ['tsserver']
 
@@ -142,6 +144,7 @@ let g:netrw_winsize = 25
 "  autocmd!
 "  autocmd VimEnter * NERDTree
 "augroup END
+let g:NERDTreeMouseMode=3
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -191,6 +194,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=nv
 endif
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 
 augroup numbertoggle
  autocmd!

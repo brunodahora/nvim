@@ -1,3 +1,19 @@
 snippet log "Console log" b
 console.log($1)$0
 endsnippet
+
+snippet prsfc "Personal React Simple Functional Component" b
+import * as React from 'react';
+
+const ${1:`!v expand('%:t:r')`} = () => ();
+export default $1;
+endsnippet
+
+snippet prfc "Personal React Functional Component" b
+import * as React from 'react';
+
+const ${1:`!v expand('%:t:r')`} = () => {
+        return ();
+};
+export default $1;
+endsnippet
